@@ -1,0 +1,152 @@
+created: 20170902033345877
+description: for creating static sites
+list: readme
+modified: 20170902040421910
+plugin-type: plugin
+title: $:/plugins/didaxy/static-sites
+type: application/json
+version: 0.0.2
+
+{
+    "tiddlers": {
+        "$:/plugins/didaxy/static-sites/readme": {
+            "text": "!!Introduction\n\nThis plugin adds templates and utilities for static site generation, as explained at (http://www.didaxy.com/exporting-static-sites-from-tiddlywiki). It is intended for use only with Tiddlywiki under Node.js and relies on your ability to run build commands.\n\n!!Build Script\n\nIn addition to the plugin, you need a file called ``build.sh`` in your main folder (alongside the 'tiddlers' folder) with the following contents.\n\n```\ntiddlywiki --rendertiddlers [!is[system]tag[Live]] $:/didaxy/templates/static.tiddler.html static text/plain --rendertiddler $:/didaxy/templates/static.template.css static/static.css text/plain --savetiddler $:/didaxy/favicon.png static/images/favicon.png\n```\n\nYou run a re-build of the site by executing this script (``./build.sh``) and the static site will be output to ``output/static``.\n\n!!Selecting Template Content by Tag\n\nYou also need to add the tag ``$:/tags/StaticViewTemplate`` to those template tiddlers which you want to include in your output.\n\nYou can start by including some of the regular view template tiddlers. The minimum to include is the body and if you don't do this, your pages will be blank (the plugin can't do this without over-writing your templates)\n\n<table>\n<tr><td>tiddler</td><td>``$:/tags/StaticViewTemplate``</td></tr>\n<$list filter=\"[all[shadows+system]tag[$:/tags/ViewTemplate]]\">\n<tr><td>{{!!title}}</td><td><$checkbox tag=\"$:/tags/StaticViewTemplate\"/></td></tr>\n</$list>\n</table>\n\nTemplates having that tag will be included in the following order (you can drag this list to re-arrange it if it has more than one item in it. If it's empty, your pages will be blank)\n\n!!!List\n<<list-tagged-draggable tag:\"$:/tags/StaticViewTemplate\">>\n\n!!Google Analytics\n\nIf you want to use Google analytics on your static site, you should enter your tracking code here.\n\n<$edit-text tag=input tiddler=\"$:/didaxy/token/ganalytics\"/>\n\n!!Get Started\n\nMost sites should have a page called ``index`` which serves as the landing page.\n\nTo get started, by making a new tiddler called 'index', tagged 'Live', click this button.\n\n<$button>\n<$action-sendmessage $message=\"tm-new-tiddler\" title=\"index\" tags=\"Live\" />\nMake Index</$button>\n\n!!Generate Your Site\n\nOnce you've made some tiddlers tagged 'Live', you can generate your site by running the ``build.sh`` script.\n\nFor more information, visit http://www.didaxy.com/exporting-static-sites-from-tiddlywiki.",
+            "bag": "default",
+            "revision": "1",
+            "type": "text/vnd.tiddlywiki",
+            "title": "$:/plugins/didaxy/static-sites/readme",
+            "tags": "",
+            "modified": "20170902032841401",
+            "created": "20170825054745104"
+        },
+        "$:/didaxy/favicon.png": {
+            "text": "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",
+            "bag": "default",
+            "revision": "1",
+            "type": "image/png",
+            "title": "$:/didaxy/favicon.png",
+            "tags": "",
+            "modified": "20170902032018550",
+            "created": "20170902014229680"
+        },
+        "$:/didaxy/scripts/ganalytics": {
+            "text": "(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){\n  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),\n  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)\n  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');\n\n  ga('create', '`<$view tiddler=\"$:/didaxy/token/ganalytics\"/>`', 'auto');\n  ga('send', 'pageview');",
+            "bag": "default",
+            "revision": "1",
+            "type": "text/vnd.tiddlywiki",
+            "title": "$:/didaxy/scripts/ganalytics",
+            "tags": "",
+            "modified": "20170902032018631",
+            "created": "20170826043629589"
+        },
+        "$:/didaxy/static-footer": {
+            "text": "<footer class=\"footer\">\n<div class=\"container-fluid\">\n<div>\n<a rel=\"license\" href=\"http://creativecommons.org/licenses/by/4.0/\" target=\"_blank\"><img alt=\"Creative Commons License\" style=\"border-width:0\" src=\"https://i.creativecommons.org/l/by/4.0/88x31.png\" /></a></div><div>This work is licensed under a <a rel=\"license\" href=\"http://creativecommons.org/licenses/by/4.0/\" target=\"_blank\">Creative Commons Attribution 4.0 International License</a>.</div>\n</div>\n\n</footer>\n",
+            "bag": "default",
+            "revision": "1",
+            "type": "text/vnd.tiddlywiki",
+            "title": "$:/didaxy/static-footer",
+            "tags": "",
+            "modified": "20170902032018629",
+            "created": "20170815074630884"
+        },
+        "$:/didaxy/static-header": {
+            "text": "<nav class=\"navbar navbar-expand-lg navbar-light\">\n<div class=\"container-fluid\">\n<div class=\"navbar-brand\"> <$link to=\"index\"><$image source={{$:/didaxy/static-header!!site-logo}} width=\"48px\"/>&nbsp;{{$:/didaxy/static-header!!site-name}}</$link></div>\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarNavDropdown\" aria-controls=\"navbarNavDropdown\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n  <div class=\"collapse navbar-collapse\" id=\"navbarNavDropdown\">\n    <ul class=\"navbar-nav\">\n       <$list filter=\"[list[$:/didaxy/static-header!!navbar-entries]]\">\n           <$wikify name=\"list_classes\" text=\"nav-item {{!!optclass}}\">\n           <li class=<<list_classes>>>\n              <div class=\"nav-link\">\n                  <$link>{{!!title}}</$link>\n               </div>\n            </li>\n            </$wikify>\n       </$list>\n       <li class=\"nav-item dropdown\">\n        <a class=\"nav-link dropdown-toggle\" href=\"./recent.html\" id=\"navbarDropdownMenuLink\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\n          Recent\n        </a>\n\n        <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdownMenuLink\">\n\n<$list filter=\"[tag[Live]!tag[noindex]!sort[modified]limit[10]]\">\n<div  class=\"dropdown-item\"><$link to=<<currentTiddler>>>{{!!title}}</$link></div>\n</$list>\n<div  class=\"dropdown-item\"><$link to=\"Recent\"> MORE... </$link></div>\n\n        </div>\n      </li>\n    </ul>\n  </div>\n</div>\n</nav>",
+            "bag": "default",
+            "revision": "1",
+            "type": "text/vnd.tiddlywiki",
+            "title": "$:/didaxy/static-header",
+            "tags": "",
+            "site-name": "Didaxy",
+            "site-logo": "$:/didaxy/didaxy-logo-white.svg",
+            "optclass": "",
+            "navbar_fixed_yes_no": "no",
+            "navbar-entries": "About Tutorials Contact",
+            "modified": "20170902032018626",
+            "created": "20170815074447863"
+        },
+        "$:/didaxy/static/export/get-export-link.js": {
+            "text": "/*\\\nwith thanks to 'welford', https://github.com/welford/twstaticblog/tree/master/export\nformats links so they conform to camel case.\n\\*/\n(function(){\n\"use strict\";\n\nexports.name = \"tv-get-export-link\";\n\nexports.params = [\n];\n\nexports.run = function() {\n\tvar title = this.to;\n\tvar sanitized_title = title.replace(/([^a-z0-9]+)/gi, '-');\n\tvar attr = this.getVariable(\"tv-subfolder-links\");\n\tvar path_to_root=\"./\"\t\n\tvar finalLink=path_to_root\n\n\t\n\tvar wikiLinkTemplateMacro = this.getVariable(\"tv-wikilink-template\"),\n\t\twikiLinkTemplate = wikiLinkTemplateMacro ? wikiLinkTemplateMacro.trim() : \"#$uri_encoded$\",\n\t\twikiLinkText = wikiLinkTemplate.replace(\"$uri_encoded$\",encodeURIComponent(sanitized_title));\t\n\twikiLinkText = wikiLinkText.replace(\"$uri_doubleencoded$\",encodeURIComponent(sanitized_title));\n\treturn (finalLink + wikiLinkText).toLocaleLowerCase();\n};\n\n})();",
+            "bag": "default",
+            "revision": "1",
+            "with": "",
+            "type": "application/javascript",
+            "to": "",
+            "title": "$:/didaxy/static/export/get-export-link.js",
+            "thanks": "",
+            "tags": "$:/tags/Macro",
+            "module-type": "macro",
+            "modified": "20170902032018622",
+            "https": "//github.com/welford/twstaticblog/tree/master/export",
+            "created": "20170820100953364",
+            "'welford',": ""
+        },
+        "$:/didaxy/static/export/get-export-path.js": {
+            "text": "/*\\\nwith thanks to 'welford', https://github.com/welford/twstaticblog/tree/master/export\nformats filenames so they conform to kebab case\n\\*/\n(function(){\n\"use strict\";\n\nexports.name = \"tv-get-export-path\";\n\nexports.params = [\n\t{title: \"\"}\n];\n\n/*\nRun the macro\n*/\nexports.run = function(title) {\n                       \n\tvar sanitized_title = title.replace(/([^a-z0-9]+)/gi, '-');\n\treturn (\"./static/\"+ sanitized_title).toLocaleLowerCase();\n\tconsole.log(\"au\");\n}\n})();",
+            "bag": "default",
+            "revision": "1",
+            "with": "",
+            "type": "application/javascript",
+            "to": "",
+            "title": "$:/didaxy/static/export/get-export-path.js",
+            "thanks": "",
+            "tags": "$:/tags/Macro",
+            "module-type": "macro",
+            "modified": "20170902032018619",
+            "https": "//github.com/welford/twstaticblog/tree/master/export",
+            "created": "20170820100651730",
+            "'welford',": ""
+        },
+        "$:/didaxy/styles/static-styles.css": {
+            "text": "/* Sticky footer styles\n-------------------------------------------------- */\nhtml {\n  position: relative;\n  min-height: 100%;\n}\nbody {\n  line-height: 1.5em;\n  margin-bottom: 180px;\n}\n.navbar a:hover {\n  text-decoration: none;\n}\na:visited {\n  color: #533599\n}\n.footer {\n  position: absolute;\n  bottom: 0;\n  width: 100%;\n  min-height: 100px;\n  color: #673599;\n  background-color: #f5eff7;\n  text-align: center;\n  padding-top: 20px;\n}\n\n.footer .container-fluid {\n  background-color: #f5eff7;\n  background: linear-gradient(135deg, #f1e7f7, #ba99cf);\n}\n\n.footer div {\n padding-top: 10px;\n}\n\n/* dropdown menu tweaks */\n\n.dropdown-menu {\n  background-color: #f5eff7;\n  border: none;\n  max-width: 100vw;\n  overflow-x: hidden;\n}\n\n.dropdown-item {\n  padding: 0.5rem;\n  color: inherit;\n}\n\n/* Custom page CSS\n-------------------------------------------------- */\n/* Not required for template or sticky footer method. */\n\n.page-content {\n\n}\n\n/*.footer > .container {\n  padding-right: 15px;\n  padding-left: 15px;\n}*/\n\n\n.article-image {\n  display:block;\n  margin: auto;\n  max-width: 100%;\n}\n\npre {\n    font-size: 90%;\n    line-height: 1.2em;\n    font-family: \"Courier 10 Pitch\", Courier, monospace;\n    white-space: pre;\n    white-space: pre-wrap;\n    white-space: -moz-pre-wrap;\n    white-space: -o-pre-wrap;\n    width: auto;\n    display: block;\n    clear: both;\n    padding: 1em;\n    margin: auto;\n    border: solid 1px #e1e1e1;\n    background-color: hsl(277, 50%, 98%);\n\n}\ncode {\n    font-size: 90%;\n    display: inline;\n    padding: .1rem .2rem;\n    background-color: hsl(277, 50%, 96%);\n    color: inherit;\n}\n\n\nh2 {\n  padding-top: 20px;\n padding-bottom: 10px;\n}\n\n.navbar {\n  color:  #533599;\n  background-color: #f5eff7;\n  margin-top: -1rem;\n}\n\n.navbar .navbar-nav .nav-link {\n  color:  #533599;\n\n}\n\n.header-image {\n    width: 100vw;\n    margin-left: calc(-50vw + 50%);\n    margin-bottom: -150px;\n}\n\n.header-image.index {\n    background: linear-gradient(180deg, #f5eff7, #fff);\n  margin-top: -20px;\n}\n\n.page-content .container {\n  max-width: 800px;\n}\n\n.tutorial-next-nav {\n  float: right;\n  font-size: larger; \n}\n\nbody {\n  overflow-x: hidden;\n}\n\n.content-footer-navigation {\n  text-align: center;\n  clear: both;\n  padding-top: 1rem;\n}\n\n",
+            "bag": "default",
+            "revision": "1",
+            "type": "text/css",
+            "title": "$:/didaxy/styles/static-styles.css",
+            "tags": "",
+            "modified": "20170902032018614",
+            "created": "20170815073331954"
+        },
+        "$:/didaxy/template/static-view-template": {
+            "text": "\\define frame-classes()\ntc-tiddler-frame tc-tiddler-view-frame $(missingTiddlerClass)$ $(shadowTiddlerClass)$ $(systemTiddlerClass)$ $(tiddlerTagClasses)$\n\\end\n\\define folded-state()\n$:/state/folded/$(currentTiddler)$\n\\end\n<$set name=\"storyTiddler\" value=<<currentTiddler>>><$set name=\"tiddlerInfoState\" value=<<qualify \"$:/state/popup/tiddler-info\">>><$tiddler tiddler=<<currentTiddler>>><div class=<<frame-classes>>><$list filter=\"[all[shadows+tiddlers]tag[$:/tags/StaticViewTemplate]!has[draft.of]]\" variable=\"listItem\"><$transclude tiddler=<<listItem>>/></$list>\n</div>\n</$tiddler></$set></$set>\n",
+            "bag": "default",
+            "revision": "1",
+            "type": "text/vnd.tiddlywiki",
+            "title": "$:/didaxy/template/static-view-template",
+            "tags": "",
+            "modified": "20170902032018611",
+            "created": "20170815075646179"
+        },
+        "$:/didaxy/templates/static.template.css": {
+            "text": "{{$:/didaxy/styles/static-styles.css||$:/core/templates/plain-text-tiddler}}\n\n\n",
+            "bag": "default",
+            "revision": "1",
+            "type": "text/vnd.tiddlywiki",
+            "title": "$:/didaxy/templates/static.template.css",
+            "tags": "",
+            "modified": "20170902032018607",
+            "created": "20170815071232361"
+        },
+        "$:/didaxy/templates/static.tiddler.html": {
+            "text": "\\define tv-wikilink-template() $uri_doubleencoded$.html\n\\define tv-config-toolbar-icons() no\n\\define tv-config-toolbar-text() no\n\\define tv-config-toolbar-class() tc-btn-invisible\n`<!doctype html>\n<html>\n<head>\n<meta http-equiv=\"Content-Type\" content=\"text/html;charset=utf-8\" />\n<meta name=\"generator\" content=\"TiddlyWiki\" />\n<meta name=\"tiddlywiki-version\" content=\"`{{$:/core/templates/version}}`\" />\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n<meta name=\"apple-mobile-web-app-capable\" content=\"yes\" />\n<meta name=\"apple-mobile-web-app-status-bar-style\" content=\"black-translucent\" />\n<meta name=\"mobile-web-app-capable\" content=\"yes\"/>\n<meta name=\"format-detection\" content=\"telephone=no\">\n<link id=\"faviconLink\" rel=\"shortcut icon\" href=\"./favicon.png\">\n<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css\" integrity=\"sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M\" crossorigin=\"anonymous\">\n<link rel=\"stylesheet\" href=\"//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/vs.min.css\">`\n<$list filter=\"[list[!!remote_styles]]\">\n`<link rel=\"stylesheet\" href=\"`{{!!title}}`\">`\n</$list>`\n<link rel=\"stylesheet\" href=\"static.css\">`\n<$list filter=\"[list[!!styles]]\">\n`<style>`\n{{!!text}}\n`</style>`\n</$list>\n\n`<title>`<$view field=\"caption\"><$view field=\"title\"/></$view>: {{$:/core/wiki/title}}`</title>\n</head>\n<body class=\"tc-body\">`\n{{$:/didaxy/static-header||$:/core/templates/html-tiddler}}`<section class=\"page-content\"><div class=\"container\">`<$importvariables filter=\"[[$:/core/ui/PageMacros]] [all[shadows+tiddlers]tag[$:/tags/Macro]!has[draft.of]]\">\n<$view tiddler=\"$:/didaxy/template/static-view-template\" format=\"htmlwikified\"/>\n</$importvariables>`\n</div>\n</section>\n\n\n`{{$:/didaxy/static-footer||$:/core/templates/html-tiddler}}`\n\n\n<script src=\"https://code.jquery.com/jquery-3.2.1.slim.min.js\" integrity=\"sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN\" crossorigin=\"anonymous\"></script>\n<script src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js\" integrity=\"sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4\" crossorigin=\"anonymous\"></script>\n<script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js\" integrity=\"sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1\" crossorigin=\"anonymous\"></script>`\n\n<$list filter=\"[list[!!remote_scripts]]\">\n`<script src=\"`{{!!title}}`\"  type=\"text/javascript\"></script>`\n</$list>\n<$list filter=\"[list[!!scripts]]\">\n`<script>`\n{{!!text}}\n`</script>`\n</$list>\n`<script>\n  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){\n  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),\n  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)\n  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');\n\n  ga('create', '`<$view tiddler=\"$:/didaxy/token/ganalytics\"/>`', 'auto');\n  ga('send', 'pageview');\n</script>\n</body>\n</html>\n`",
+            "bag": "default",
+            "revision": "1",
+            "type": "text/vnd.tiddlywiki",
+            "title": "$:/didaxy/templates/static.tiddler.html",
+            "tags": "",
+            "styles": "yellowsubmarine.css",
+            "scripts": "pagescript.js",
+            "modified": "20170902032018603",
+            "created": "20170815071157183"
+        },
+        "$:/didaxy/token/ganalytics": {
+            "text": "UA-xxxxxxxxx-x",
+            "bag": "default",
+            "revision": "2",
+            "type": "text/vnd.tiddlywiki",
+            "title": "$:/didaxy/token/ganalytics",
+            "tags": "",
+            "modified": "20170902033020992",
+            "created": "20170820090604707"
+        }
+    }
+}
